@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Alura.ListaLeitura.App.Negocio;
 using Alura.ListaLeitura.App.Repositorio;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
 namespace Alura.ListaLeitura.App.Servico
@@ -17,10 +18,14 @@ namespace Alura.ListaLeitura.App.Servico
             return "Livro cadastrado com sucesso!";
         }
 
-        public static Task CadastrarNovoLivroForm(HttpContext context)
+        public IActionResult ExibeFormulario()
         {
-            var html = HtmlUtils.CarregaArquivoHtml("CadastroNovoLivro");
-            return context.Response.WriteAsync(html);
+            var html = new ViewResult
+            {
+                ViewName = "formulario"
+            };
+
+            return html;
         }
     }
 }
